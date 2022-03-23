@@ -2,7 +2,7 @@ package models
 
 import (
 	"errors"
-	"github.com/astaxie/beego/validation"
+	"github.com/beego/beego/v2/core/validation"
 	"github.com/xiya-team/helpers"
 	"log"
 	"strconv"
@@ -43,7 +43,7 @@ func NewUser() (user *User) {
 	return &User{}
 }
 
-func (m *User) Pagination(offset, limit int, key string) (res []User, count int) {
+func (m *User) Pagination(offset int, limit int, key string) (res []User, count int64) {
 	query := Db
 	if key != "" {
 		query = query.Where("name like ?", "%"+key+"%")
@@ -206,7 +206,7 @@ func (m *User) FindById(id int) (user User, err error) {
 	return
 }
 
-func (m *User) FindByMap(offset, limit int64, dataMap map[string]interface{},orderBy string) (user []User, total int64, err error) {
+func (m *User) FindByMap(offset int, limit int, dataMap map[string]interface{},orderBy string) (user []User, total int64, err error) {
 	query := Db
 	if status,isExist:=dataMap["status"].(int);isExist == true{
 		query = query.Where("status = ?", status)

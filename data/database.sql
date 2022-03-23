@@ -326,6 +326,7 @@ CREATE TABLE `sys_user` (
   `user_type` tinyint(2) DEFAULT '1' COMMENT '用户类型（1系统用户）',
   `email` varchar(50) DEFAULT '' COMMENT '用户邮箱',
   `phone` varchar(12) DEFAULT NULL COMMENT '手机号',
+  `nickname` varchar(50) NOT NULL DEFAULT '' COMMENT '别名',
   `phonenumber` varchar(11) DEFAULT '' COMMENT '手机号码',
   `sex` tinyint(1) DEFAULT '1' COMMENT '用户性别（1男 2女 3未知）',
   `avatar` varchar(100) DEFAULT '' COMMENT '头像路径',

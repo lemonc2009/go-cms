@@ -1,7 +1,8 @@
 package util
 
 import (
-	"github.com/astaxie/beego"
+	//"github.com/beego/beego/v2"
+	beego "github.com/beego/beego/v2/server/web"
 	"github.com/go-redis/redis/v7"
 	"sync"
 )
@@ -18,8 +19,8 @@ func NewRedisClient() (*redis.Client,error) {
 	once.Do(func() {
 		index,_:=  beego.AppConfig.Int("redis::index")
 		redisClient = redis.NewClient(&redis.Options{
-			Addr:     	beego.AppConfig.String("redis::addr"),
-			Password: 	beego.AppConfig.String("redis::password"),
+			Addr:     	beego.AppConfig.DefaultString("redis::addr",""),
+			Password: 	beego.AppConfig.DefaultString("redis::password",""),
 			DB:       	index,
 			PoolSize:	10,
 		})

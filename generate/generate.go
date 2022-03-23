@@ -3,7 +3,8 @@ package generate
 import (
 	"flag"
 	"go-cms/models"
-	"github.com/astaxie/beego"
+	//"github.com/beego/beego/v2"
+	beego "github.com/beego/beego/v2/server/web"
 	"path/filepath"
 	"strings"
 )
@@ -33,7 +34,7 @@ func Run() {
 }
 
 func Generate(tableName, modelPath, controllerPath, viewPath string) {
-	tablePrefix := beego.AppConfig.String("tablePrefix")
+	tablePrefix := beego.AppConfig.DefaultString("tablePrefix","")
 	var tableAttr []TabelAttr
 	models.Db.Raw("desc " + tablePrefix + tableName).Scan(&tableAttr)
 

@@ -36,7 +36,7 @@ func NewMenu() (menu *Menu) {
 	return &Menu{}
 }
 
-func (m *Menu) Pagination(offset, limit int, key string) (res []Menu, count int) {
+func (m *Menu) Pagination(offset int, limit int, key string) (res []Menu, count int64) {
 	query := Db
 	if key != "" {
 		query = query.Where("name like ?", "%"+key+"%")
@@ -117,7 +117,7 @@ func (m *Menu) FindById(id int) (menu Menu, err error) {
 	return
 }
 
-func (m *Menu) FindByMap(offset, limit int64, dataMap map[string]interface{},orderBy string) (res []Menu, total int64, err error) {
+func (m *Menu) FindByMap(offset int, limit int, dataMap map[string]interface{},orderBy string) (res []Menu, total int64, err error) {
 	query := Db
 	if visible,isExist:=dataMap["visible"].(int);isExist{
 		query = query.Where("visible = ?", visible)

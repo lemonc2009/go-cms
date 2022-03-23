@@ -2,7 +2,7 @@ package article
 
 import (
 	"encoding/json"
-	"github.com/astaxie/beego/validation"
+	"github.com/beego/beego/v2/core/validation"
 	"go-cms/controllers"
 	"github.com/xiya-team/helpers"
 	"go-cms/models"

@@ -2,7 +2,7 @@ package sys
 
 import (
 	"encoding/json"
-	"github.com/astaxie/beego/validation"
+	"github.com/beego/beego/v2/core/validation"
 	"github.com/xiya-team/helpers"
 	"github.com/wxnacy/wgo/arrays"
 	"go-cms/common"

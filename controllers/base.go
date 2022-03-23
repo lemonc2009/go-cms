@@ -2,8 +2,9 @@ package controllers
 
 import (
 	"encoding/json"
-	"github.com/astaxie/beego"
-	"github.com/astaxie/beego/validation"
+	//"github.com/beego/beego/v2"
+	beego "github.com/beego/beego/v2/server/web"
+	"github.com/beego/beego/v2/core/validation"
 	"github.com/xiya-team/helpers"
 	"go-cms/common"
 	"go-cms/models"
@@ -58,15 +59,15 @@ func (c *BaseController) JsonResult(code int, msg string, data ...interface{}) {
 	
 	switch len(data) {
 	case 4:
-		c.Data["json"] = d.LayuiJson(code, msg, data[0], data[1],data[2],data[3])
+		c.Data["json"] = d.LayuiJson(int64(code), msg, data[0], data[1],data[2],data[3])
 	case 3:
-		c.Data["json"] = d.LayuiJson(code, msg, data[0], data[1],data[2],false)
+		c.Data["json"] = d.LayuiJson(int64(code), msg, data[0], data[1],data[2],false)
 	case 2:
-		c.Data["json"] = d.LayuiJson(code, msg, data[0], data[1],false,false)
+		c.Data["json"] = d.LayuiJson(int64(code), msg, data[0], data[1],false,false)
 	case 1:
-		c.Data["json"] = d.LayuiJson(code, msg, data[0], false,false,false)
+		c.Data["json"] = d.LayuiJson(int64(code), msg, data[0], false,false,false)
 	default:
-		c.Data["json"] = d.LayuiJson(code, msg, false, false,false,false)
+		c.Data["json"] = d.LayuiJson(int64(code), msg, false, false,false,false)
 	}
 
 	//记录操作日志

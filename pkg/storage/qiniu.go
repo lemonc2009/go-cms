@@ -2,16 +2,16 @@ package storage
 
 import (
 	"context"
-
-	"github.com/astaxie/beego"
+	//"github.com/beego/beego/v2"
+	beego "github.com/beego/beego/v2/server/web"
 	"github.com/qiniu/api.v7/auth/qbox"
 	"github.com/qiniu/api.v7/storage"
 )
 
 var (
-	accessKey = beego.AppConfig.String("accessKey")
-	secretKey = beego.AppConfig.String("secretKey")
-	bucket    = beego.AppConfig.String("bucket")
+	accessKey = beego.AppConfig.DefaultString("accessKey","")
+	secretKey = beego.AppConfig.DefaultString("secretKey","")
+	bucket    = beego.AppConfig.DefaultString("bucket","")
 )
 
 func GetToken() string {

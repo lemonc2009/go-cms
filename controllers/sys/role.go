@@ -1,8 +1,8 @@
 package sys
 
 import (
-	"github.com/astaxie/beego/logs"
-	"github.com/astaxie/beego/validation"
+	"github.com/beego/beego/v2/core/logs"
+	"github.com/beego/beego/v2/core/validation"
 	"github.com/xiya-team/helpers"
 	"go-cms/common"
 	"go-cms/controllers"

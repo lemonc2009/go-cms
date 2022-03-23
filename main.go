@@ -3,9 +3,10 @@ package main
 import (
 	"encoding/json"
 	"fmt"
-	"github.com/astaxie/beego"
-	"github.com/astaxie/beego/context"
-	"github.com/astaxie/beego/logs"
+	//"github.com/beego/beego/v2"
+	beego "github.com/beego/beego/v2/server/web"
+	"github.com/beego/beego/v2/server/web/context"
+	"github.com/beego/beego/v2/core/logs"
 	"go-cms/generate"
 	"go-cms/middlewares"
 	"go-cms/pkg/e"

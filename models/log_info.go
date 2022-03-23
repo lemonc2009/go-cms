@@ -29,7 +29,7 @@ func NewLogInfo() (logInfo *LogInfo) {
 	return &LogInfo{}
 }
 
-func (m *LogInfo) Pagination(offset, limit int, key string) (res []LogInfo, count int) {
+func (m *LogInfo) Pagination(offset int, limit int, key string) (res []LogInfo, count int64) {
 	query := Db
 	if key != "" {
 		query = query.Select("*").Where("name like ?", "%"+key+"%")
@@ -104,7 +104,7 @@ func (m *LogInfo) FindById(id int) (logInfo LogInfo, err error) {
 	return
 }
 
-func (m *LogInfo) FindByMap(offset, limit int64, dataMap map[string]interface{},orderBy string) (res []LogInfo, total int64, err error) {
+func (m *LogInfo) FindByMap(offset int, limit int, dataMap map[string]interface{},orderBy string) (res []LogInfo, total int64, err error) {
 	query := Db
 	if status,isExist:=dataMap["status"].(int);isExist{
 		query = query.Where("status = ?", status)

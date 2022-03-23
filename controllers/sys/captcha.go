@@ -2,8 +2,8 @@ package sys
 
 import (
 	"encoding/json"
-	"github.com/astaxie/beego/httplib"
-	"github.com/astaxie/beego/logs"
+	"github.com/beego/beego/v2/client/httplib"
+	"github.com/beego/beego/v2/core/logs"
 	"github.com/tidwall/gjson"
 	"go-cms/controllers"
 	"go-cms/pkg/e"

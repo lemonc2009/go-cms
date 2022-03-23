@@ -26,7 +26,7 @@ func NewConfigs() (configs *Configs) {
 	return &Configs{}
 }
 
-func (m *Configs) Pagination(offset, limit int, key string) (res []Configs, count int) {
+func (m *Configs) Pagination(offset int, limit int, key string) (res []Configs, count int64) {
 	query := Db
 	if key != "" {
 		query = query.Where("name like ?", "%"+key+"%")
@@ -103,7 +103,7 @@ func (m *Configs) FindById(id int) (configs Configs, err error) {
 	return
 }
 
-func (m *Configs) FindByMap(offset, limit int64, dataMap map[string]interface{},orderBy string) (res []Configs, total int64, err error) {
+func (m *Configs) FindByMap(offset int, limit int, dataMap map[string]interface{},orderBy string) (res []Configs, total int64, err error) {
 	query := Db
 	if config_type,isExist:=dataMap["config_type"].(int);isExist{
 		query = query.Where("config_type = ?", config_type)

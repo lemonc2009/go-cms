@@ -24,7 +24,7 @@ func NewAdminLog() (adminLog *AdminLog) {
 	return &AdminLog{}
 }
 
-func (m *AdminLog) Pagination(offset, limit int, key string) (res []AdminLog, count int) {
+func (m *AdminLog) Pagination(offset int, limit int, key string) (res []AdminLog, count int64) {
 	query := Db
 	if key != "" {
 		query = query.Where("name like ?", "%"+key+"%")
@@ -100,7 +100,7 @@ func (m *AdminLog) FindById(id int) (adminLog AdminLog, err error) {
 	return
 }
 
-func (m *AdminLog) FindByMap(offset, limit int64, dataMap map[string]interface{},orderBy string) (res []AdminLog, total int64, err error) {
+func (m *AdminLog) FindByMap(offset int, limit int, dataMap map[string]interface{},orderBy string) (res []AdminLog, total int64, err error) {
 	query := Db
 	if status,isExist:=dataMap["status"].(int);isExist{
 		query = query.Where("status = ?", status)

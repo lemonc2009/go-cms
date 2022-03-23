@@ -31,7 +31,7 @@ func NewRole() (role *Role) {
 	return &Role{}
 }
 
-func (m *Role) Pagination(offset, limit int, key string) (res []Role, count int) {
+func (m *Role) Pagination(offset int, limit int, key string) (res []Role, count int64) {
 	query := Db
 	if key != "" {
 		query = query.Where("name like ?", "%"+key+"%")
@@ -195,7 +195,7 @@ func (m *Role) FindById(id int) (role Role, err error) {
 	return
 }
 
-func (m *Role) FindByMap(offset, limit int64, dataMap map[string]interface{},orderBy string) (res []Role, total int64, err error) {
+func (m *Role) FindByMap(offset int, limit int, dataMap map[string]interface{},orderBy string) (res []Role, total int64, err error) {
 	query := Db
 	if status,isExist:=dataMap["status"].(int);isExist{
 		query = query.Where("status = ?", status)

@@ -2,6 +2,7 @@ package models
 
 import (
 	"errors"
+	//"gorm.io/gorm"
 	"github.com/jinzhu/gorm"
 	"time"
 )
@@ -35,7 +36,7 @@ func NewArticle() (article *Article) {
 	return &Article{}
 }
 
-func (m *Article) Pagination(offset, limit int, key string) (res []Article, count int) {
+func (m *Article) Pagination(offset int, limit int, key string) (res []Article, count int64) {
 	query := Db
 	if key != "" {
 		query = query.Where("name like ?", "%"+key+"%")
@@ -116,7 +117,7 @@ func (db *Article) TakeById(id int) (res Article, err error) {
 	return
 }
 
-func (m *Article) FindByMap(offset, limit int64, dataMap map[string]interface{},orderBy string) (res []Article, total int64, err error) {
+func (m *Article) FindByMap(offset int, limit int, dataMap map[string]interface{},orderBy string) (res []Article, total int64, err error) {
 	query := Db
 	if status,isExist:=dataMap["status"].(int);isExist{
 		query = query.Where("status = ?", status)

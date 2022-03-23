@@ -2,22 +2,28 @@ package models
 
 import (
 	"fmt"
-	"github.com/astaxie/beego"
+	// "github.com/beego/beego/v2"
+	beego "github.com/beego/beego/v2/server/web"
 	"github.com/jinzhu/gorm"
 	_ "github.com/jinzhu/gorm/dialects/mysql"
+	//"gorm.io/gorm"
+	//"github.com/go-sql-driver/mysql"
 	"log"
 	"reflect"
 	"sync"
 	"time"
 )
 
+// _ "gorm.io/gorm/dialects/mysql"
+	
+
 var Db *gorm.DB
 
 type Model struct {
 	StartTime   string      `json:"start_time,omitempty" gorm:"-" form:"start_time" time_format:"2008-08-08 08:08:08"`   // 忽略这个字段
 	EndTime     string      `json:"end_time,omitempty" gorm:"-" form:"end_time" time_format:"2008-08-08 08:08:08"`   // 忽略这个字段
-	Page        int64       `json:"page,omitempty" gorm:"-" form:"page"`   // 忽略这个字段
-	PageSize    int64       `json:"page_size,omitempty" gorm:"-" form:"page_size"`   // 忽略这个字段
+	Page        int       `json:"page,omitempty" gorm:"-" form:"page"`   // 忽略这个字段
+	PageSize    int       `json:"page_size,omitempty" gorm:"-" form:"page_size"`   // 忽略这个字段
 	OrderColumnName  string `json:"order_column_name,omitempty" gorm:"-" form:"order_column_name"`   // 忽略这个字段
 	OrderType     string    `json:"order_type,omitempty" gorm:"-" form:"order_type"`   // 忽略这个字段
 	Fields     string       `json:"fields,omitempty" gorm:"-" form:"fields"`   // 忽略这个字段
@@ -93,12 +99,13 @@ func init() {
 		OnceMutex sync.Once
 	)
 
-	dbType = beego.AppConfig.String("dbType")
-	dbName = beego.AppConfig.String("dbName")
-	user = beego.AppConfig.String("user")
-	password = beego.AppConfig.String("password")
-	host = beego.AppConfig.String("host")
-	tablePrefix = beego.AppConfig.String("tablePrefix")
+	dbType = beego.AppConfig.DefaultString("dbType","")
+	log.Println(dbType)
+	dbName = beego.AppConfig.DefaultString("dbName","")
+	user = beego.AppConfig.DefaultString("user","")
+	password = beego.AppConfig.DefaultString("password","")
+	host = beego.AppConfig.DefaultString("host","")
+	tablePrefix = beego.AppConfig.DefaultString("tablePrefix","")
 	
 	//只执行一次
 	OnceMutex.Do(func() {

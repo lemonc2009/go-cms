@@ -2,8 +2,9 @@ package sys
 
 import (
 	"encoding/json"
-	"github.com/astaxie/beego"
-	"github.com/astaxie/beego/validation"
+	//"github.com/beego/beego/v2"
+	beego "github.com/beego/beego/v2/server/web"
+	"github.com/beego/beego/v2/core/validation"
 	"github.com/xiya-team/helpers"
 	"go-cms/common"
 	"go-cms/controllers"
@@ -291,6 +292,7 @@ func (c *UserController) BatchDelete() {
 
 //用户登录
 func (c *UserController) Login() {
+              log.Println("here") 
 	if c.Ctx.Input.IsPost() {
 		model := models.NewUser()
 		data := c.Ctx.Input.RequestBody
@@ -322,7 +324,7 @@ func (c *UserController) Login() {
 		}
 		
 		redisClient,err := util.NewRedisClient()
-
+		
 		if err != nil{
 			c.JsonResult(e.ERROR, "用户名或密码错误!")
 		}
@@ -332,8 +334,10 @@ func (c *UserController) Login() {
 			c.JsonResult(e.ERROR, "用户名或密码错误!")
 		}
 		
+		//TODO 2022-03-22 hy 密码需要加强防护，前端不传明文，后端不存明文。
+		log.Println("Login Info4",loginData.UserName,loginData.Password)
 		has := helpers.Md5(model.Password + user.Salt)
-		
+		log.Println("Login Info X",loginData.UserName, has)
 		if (user.Password == has) {
 			token := util.CreateToken(user)
 			jsonData := make(map[string]interface{}, 4)
@@ -357,7 +361,7 @@ func (c *UserController) Logout()  {
 	if err!=nil{
 		c.JsonResult(e.ERROR, "redis 连接错误！")
 	}
-	tokenString := c.Ctx.Input.Header(beego.AppConfig.String("jwt::token_name"))
+	tokenString := c.Ctx.Input.Header(beego.AppConfig.DefaultString("jwt::token_name",""))
 	username := util.GetUserNameByToken(tokenString)
 	
 	redisClient.Del("token_"+username)
@@ -382,7 +386,7 @@ func (c *UserController) CheckToken() {
 }
 
 func (c *UserController) UserInfo() {
-	token := c.Ctx.Input.Header(beego.AppConfig.String("jwt::token_name"))
+	token := c.Ctx.Input.Header(beego.AppConfig.DefaultString("jwt::token_name",""))
 	uid := util.GetUserIdByToken(token)
 	userInfo, err := models.NewUser().FindById(uid)
 	if err != nil {

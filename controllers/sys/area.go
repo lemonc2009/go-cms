@@ -1,7 +1,7 @@
 package sys
 
 import (
-	"github.com/astaxie/beego/validation"
+	"github.com/beego/beego/v2/core/validation"
 	"github.com/xiya-team/helpers"
 	"go-cms/controllers"
 	"encoding/json"

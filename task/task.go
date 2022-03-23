@@ -2,7 +2,7 @@ package task
 
 import (
 	//"go-cms/models"
-	"github.com/astaxie/beego/toolbox"
+	"github.com/beego/beego/v2/adapter/toolbox"
 )
 
 // 参考文档 https://beego.me/docs/module/toolbox.md#task

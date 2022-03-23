@@ -33,7 +33,7 @@ func NewCategory() (category *Category) {
 	return &Category{}
 }
 
-func (m *Category) Pagination(offset, limit int, key string) (res []Category, count int) {
+func (m *Category) Pagination(offset int, limit int, key string) (res []Category, count int64) {
 	query := Db
 	if key != "" {
 		query = query.Where("name like ?", "%"+key+"%")
@@ -109,7 +109,7 @@ func (m *Category) FindById(id int) (category Category, err error) {
 	return
 }
 
-func (m *Category) FindByMap(offset, limit int64, dataMap map[string]interface{},orderBy string) (res []Category, total int64, err error) {
+func (m *Category) FindByMap(offset int, limit int, dataMap map[string]interface{},orderBy string) (res []Category, total int64, err error) {
 	query := Db
 	if status,isExist:=dataMap["status"].(int);isExist{
 		query = query.Where("status = ?", status)

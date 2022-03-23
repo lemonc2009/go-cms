@@ -3,8 +3,9 @@ package commons
 import (
 	"crypto/md5"
 	"fmt"
-	"github.com/astaxie/beego"
-	"github.com/astaxie/beego/logs"
+	//"github.com/beego/beego/v2"
+	beego "github.com/beego/beego/v2/server/web"
+	"github.com/beego/beego/v2/core/logs"
 	"github.com/baidubce/bce-sdk-go/bce"
 	"github.com/baidubce/bce-sdk-go/services/bos"
 	"github.com/sirupsen/logrus"
@@ -54,7 +55,7 @@ func (c *UploadController) Image() {
 		c.JsonResult(e.ERROR, "头像上传失败")
 	}
 	res := make(map[string]string)
-	res["path"] = beego.AppConfig.String("app_url")+"/" + path
+	res["path"] = beego.AppConfig.DefaultString("app_url","")+"/" + path
 	c.JsonResult(e.SUCCESS,"ok", res)
 }
 

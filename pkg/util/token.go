@@ -2,7 +2,8 @@ package util
 
 import (
 	"fmt"
-	"github.com/astaxie/beego"
+	//"github.com/beego/beego/v2"
+	beego "github.com/beego/beego/v2/server/web"
 	"github.com/dgrijalva/jwt-go"
 	"github.com/xiya-team/helpers"
 	"go-cms/common"
@@ -20,7 +21,7 @@ func CreateToken(user models.User) string {
 	token := jwt.NewWithClaims(jwt.SigningMethodHS256, claims)
 	
 	//token.Claims=claims
-	tokenString,_ :=token.SignedString([]byte(beego.AppConfig.String("jwt::secrets")))
+	tokenString,_ :=token.SignedString([]byte(beego.AppConfig.DefaultString("jwt::secrets","")))
 	
 	return tokenString
 }
@@ -33,7 +34,7 @@ func CheckToken(tokenString string) (b bool, t string,code int) {
 	//}
 	
 	token, err := jwt.Parse(tokenString, func(*jwt.Token) (interface{}, error) {
-		return []byte(beego.AppConfig.String("jwt::secrets")), nil
+		return []byte(beego.AppConfig.DefaultString("jwt::secrets","")), nil
 	})
 	
 	fmt.Println(err)
@@ -113,7 +114,7 @@ func GetUserIdByToken(tokenString string)  int{
 		if _,ok :=token.Method.(*jwt.SigningMethodHMAC); !ok {
 			return nil,fmt.Errorf("Unexpected signing method")
 		}
-		return []byte(beego.AppConfig.String("jwt::secrets")),nil
+		return []byte(beego.AppConfig.DefaultString("jwt::secrets","")),nil
 	})
 	claims,_:=token.Claims.(jwt.MapClaims)
 	id := claims["id"].(float64)
@@ -125,7 +126,7 @@ func GetUserNameByToken(tokenString string)  string{
 		if _,ok :=token.Method.(*jwt.SigningMethodHMAC); !ok {
 			return nil,fmt.Errorf("Unexpected signing method")
 		}
-		return []byte(beego.AppConfig.String("jwt::secrets")),nil
+		return []byte(beego.AppConfig.DefaultString("jwt::secrets","")),nil
 	})
 	claims,_:=token.Claims.(jwt.MapClaims)
 	user_name := claims["user_name"].(string)
@@ -137,7 +138,7 @@ func GetVerificationByToken(tokenString string)  string{
 		if _,ok :=token.Method.(*jwt.SigningMethodHMAC); !ok {
 			return nil,fmt.Errorf("Unexpected signing method")
 		}
-		return []byte(beego.AppConfig.String("jwt::secrets")),nil
+		return []byte(beego.AppConfig.DefaultString("jwt::secrets","")),nil
 	})
 	claims,_:=token.Claims.(jwt.MapClaims)
 	user_name := claims["verification"].(string)

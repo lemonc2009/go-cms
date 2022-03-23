@@ -31,7 +31,7 @@ func NewDictData() (dictData *DictData) {
 	return &DictData{}
 }
 
-func (m *DictData) Pagination(offset, limit int, key string) (res []DictData, count int) {
+func (m *DictData) Pagination(offset int, limit int, key string) (res []DictData, count int64) {
 	query := Db
 	if key != "" {
 		query = query.Where("name like ?", "%"+key+"%")
@@ -125,7 +125,7 @@ func (m *DictData) FindWhere(dataMap map[string]interface{}) (dictData DictData,
 	return
 }
 
-func (m *DictData) FindByMap(offset, limit int64, dataMap map[string]interface{},orderBy string) (res []DictData, total int64, err error) {
+func (m *DictData) FindByMap(offset int, limit int, dataMap map[string]interface{},orderBy string) (res []DictData, total int64, err error) {
 	query := Db
 	if status,isExist:=dataMap["status"].(int);isExist{
 		query = query.Where("status = ?", status)

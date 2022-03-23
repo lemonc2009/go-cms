@@ -1,12 +1,13 @@
 package util
 
 import (
-	"github.com/astaxie/beego"
+	//"github.com/beego/beego/v2"
+	beego "github.com/beego/beego/v2/server/web"
 	"github.com/dgrijalva/jwt-go"
 	"time"
 )
 
-var jwtSecret = []byte(beego.AppConfig.String("jwt_secret"))
+var jwtSecret = []byte(beego.AppConfig.DefaultString("jwt_secret",""))
 
 type Claims struct {
 	Username string `json:"username"`

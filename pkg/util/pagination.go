@@ -8,56 +8,56 @@ type PageData struct {
 
 // Page ...
 type Page struct {
-	PageNo     int64   `json:"page_no"`
-	PageSize   int64   `json:"page_size"`
-	TotalPage  int64   `json:"tatal_page"`
-	TotalCount int64   `json:"tatal_count"`
+	PageNo     int   `json:"page_no"`
+	PageSize   int   `json:"page_size"`
+	TotalPage  int   `json:"tatal_page"`
+	TotalCount int   `json:"tatal_count"`
 	IsFirstPage  bool  `json:"is_first_page"`
 	IsLastPage   bool  `json:"is_last_page"`
 }
 
 // PageUtil ...
-func PageUtil(count int64, pageNo int64, pageSize int64, list interface{}) PageData {
+func PageUtil(count int64, pageNo int, pageSize int, list interface{}) PageData {
 
 	if pageNo <= 0 {
 		pageNo = 1
 	}
 
-	tp := count / pageSize
-	if count%pageSize > 0 {
-		tp = count/pageSize + 1
+	tp := count / int64(pageSize)
+	if count%int64(pageSize) > 0 {
+		tp = count/int64(pageSize) + 1
 	}
 
 	page := Page{
 		PageNo:       pageNo,
 		PageSize:     pageSize,
-		TotalPage:    tp,
-		TotalCount:   count,
+		TotalPage:    int(tp),
+		TotalCount:   int(count),
 		IsFirstPage:  pageNo == 1,
-		IsLastPage:   pageNo == tp,
+		IsLastPage:   pageNo == int(tp),
 	}
 
 	return PageData{Page: page, List: list}
 }
 
-func Pages(count int64, pageNo int64, pageSize int64) Page {
+func Pages(count int64, pageNo int, pageSize int) Page {
 
 	if pageNo <= 0 {
 		pageNo = 1
 	}
 
-	tp := count / pageSize
-	if count%pageSize > 0 {
-		tp = count/pageSize + 1
+	tp := count / int64(pageSize)
+	if count%int64(pageSize) > 0 {
+		tp = count/int64(pageSize) + 1
 	}
 
 	page := Page{
 		PageNo:       pageNo,
 		PageSize:     pageSize,
-		TotalPage:    tp,
-		TotalCount:   count,
+		TotalPage:    int(tp),
+		TotalCount:   int(count),
 		IsFirstPage:  pageNo == 1,
-		IsLastPage:   pageNo == tp,
+		IsLastPage:   pageNo == int(tp),
 	}
 
 	return page

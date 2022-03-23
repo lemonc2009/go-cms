@@ -2,7 +2,8 @@ package wx
 
 import (
 	"fmt"
-	"github.com/astaxie/beego"
+	//"github.com/beego/beego/v2"
+	beego "github.com/beego/beego/v2/server/web"
 	"go-cms/controllers"
 	"github.com/silenceper/wechat"
 	"github.com/silenceper/wechat/message"
@@ -15,10 +16,10 @@ type WxConfigController struct {
 func (c *WxConfigController) Get() {
 	//配置微信参数
 	config := &wechat.Config{
-		AppID         : beego.AppConfig.String("wechat::AppID"),
-		AppSecret     : beego.AppConfig.String("wechat::AppSecret"),
-		Token         : beego.AppConfig.String("wechat::Token"),
-		EncodingAESKey: beego.AppConfig.String("wechat::EncodingAESKey"),
+		AppID         : beego.AppConfig.DefaultString("wechat::AppID",""),
+		AppSecret     : beego.AppConfig.DefaultString("wechat::AppSecret",""),
+		Token         : beego.AppConfig.DefaultString("wechat::Token",""),
+		EncodingAESKey: beego.AppConfig.DefaultString("wechat::EncodingAESKey",""),
 	}
 	wc := wechat.NewWechat(config)
 

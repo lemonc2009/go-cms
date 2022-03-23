@@ -5,7 +5,7 @@ import (
 	"github.com/xiya-team/helpers"
 	"go-cms/controllers"
 	"go-cms/models"
-	"github.com/astaxie/beego/validation"
+	"github.com/beego/beego/v2/core/validation"
 	"go-cms/pkg/e"
 	"log"
 )

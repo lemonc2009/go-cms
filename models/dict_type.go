@@ -24,7 +24,7 @@ func NewDictType() (dictType *DictType) {
 	return &DictType{}
 }
 
-func (m *DictType) Pagination(offset, limit int, key string) (res []DictType, count int) {
+func (m *DictType) Pagination(offset int, limit int, key string) (res []DictType, count int64) {
 	query := Db
 	if key != "" {
 		query = query.Where("name like ?", "%"+key+"%")
@@ -105,7 +105,7 @@ func (m *DictType) FindByDictType(dict_type string) (dictType DictType, err erro
 	return
 }
 
-func (m *DictType) FindByMap(offset, limit int64, dataMap map[string]interface{},orderBy string) (res []DictType, total int64, err error) {
+func (m *DictType) FindByMap(offset int, limit int, dataMap map[string]interface{},orderBy string) (res []DictType, total int64, err error) {
 	query := Db
 	if status,isExist:=dataMap["status"].(int);isExist{
 		query = query.Where("status = ?", status)

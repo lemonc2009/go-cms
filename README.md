@@ -193,7 +193,7 @@ go run main.go // go 命令
 
 **感谢以下开源项目作者及参与者的无私奉献**
 
-* [Beego](https://github.com/astaxie/beego/)
+* [Beego](https://github.com/beego/beego/v2/)
 * [Gorm](https://github.com/jinzhu/gorm)
 * [Vue](https://github.com/vuejs/vue)
 * [D2Admin](https://github.com/d2-projects/d2-admin)

@@ -15,7 +15,7 @@ func NewRoleMenu() (roleMenu *RoleMenu) {
 	return &RoleMenu{}
 }
 
-func (m *RoleMenu) Pagination(offset, limit int, key string) (res []RoleMenu, count int) {
+func (m *RoleMenu) Pagination(offset int, limit int, key string) (res []RoleMenu, count int64) {
 	query := Db
 	if key != "" {
 		query = query.Where("name like ?", "%"+key+"%")
@@ -91,7 +91,7 @@ func (m *RoleMenu) FindById(id int) (roleMenu RoleMenu, err error) {
 	return
 }
 
-func (m *RoleMenu) FindByMap(offset, limit int64, dataMap map[string]interface{},orderBy string) (res []RoleMenu, total int64, err error) {
+func (m *RoleMenu) FindByMap(offset int, limit int, dataMap map[string]interface{},orderBy string) (res []RoleMenu, total int64, err error) {
 	query := Db
 	if status,isExist:=dataMap["status"].(int);isExist{
 		query = query.Where("status = ?", status)

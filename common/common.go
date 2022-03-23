@@ -1,6 +1,6 @@
 package common
 
-import "github.com/astaxie/beego/context"
+import "github.com/beego/beego/v2/server/web/context"
 
 //包循环调用？再开一个包
 var UserId int = 0

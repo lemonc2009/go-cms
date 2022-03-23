@@ -2,9 +2,10 @@ package middlewares
 
 import (
 	"encoding/json"
-	"github.com/astaxie/beego"
-	"github.com/astaxie/beego/context"
-	"github.com/astaxie/beego/logs"
+	//"github.com/beego/beego/v2"
+	beego "github.com/beego/beego/v2/server/web"
+	"github.com/beego/beego/v2/server/web/context"
+	"github.com/beego/beego/v2/core/logs"
 	"github.com/go-redis/redis_rate/v8"
 	"github.com/xiya-team/helpers"
 	"go-cms/common"
@@ -129,7 +130,7 @@ func RestfulHandler() func(ctx *context.Context) {
 		controllerName, actionName := getControllerAndAction(current_url)
 		is_pass := helpers.InArray(helpers.Strtolower(controllerName+":"+actionName),urlMapping)
 		if is_pass == false {
-			token := ctx.Input.Header(beego.AppConfig.String("jwt::token_name"))
+			token := ctx.Input.Header(beego.AppConfig.DefaultString("jwt::token_name",""))
 			allow, message, code := util.CheckToken(token)
 			//user_name := util.GetUserNameByToken(token)
 			if(allow == false){

@@ -1,6 +1,10 @@
 package e
 
-import "github.com/astaxie/beego"
+import (
+	//"github.com/beego/beego/v2"
+	beego "github.com/beego/beego/v2/server/web"
+	//"log"
+	)
 
 var MsgFlags = map[string]string{
 	"landing successfully":           "登陆成功",
@@ -8,10 +12,10 @@ var MsgFlags = map[string]string{
 }
 
 func T(msg string)(str string) {
-	if beego.AppConfig.String("i18n") == "ch" {
+	if beego.AppConfig.DefaultString("i18n","ch") == "ch" {
 		return MsgFlags[msg]
 	}
-	if beego.AppConfig.String("i18n") == "us" {
+	if beego.AppConfig.DefaultString("i18n","ch") == "us" {
 		return msg
 	}
 	return

@@ -2,8 +2,8 @@ package middlewares
 
 import (
 	"encoding/json"
-	"github.com/astaxie/beego/context"
-	"github.com/astaxie/beego/logs"
+	"github.com/beego/beego/v2/server/web/context"
+	"github.com/beego/beego/v2/core/logs"
 	"github.com/xiya-team/helpers"
 	"go-cms/common"
 	"go-cms/pkg/e"
