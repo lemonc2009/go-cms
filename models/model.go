@@ -94,13 +94,12 @@ func RecodeText(code string) string{
 
 func init() {
 	var (
-		err                                               error
+		err error
 		dbType, dbName, user, password, host, tablePrefix string
 		OnceMutex sync.Once
 	)
 
 	dbType = beego.AppConfig.DefaultString("dbType","")
-	log.Println(dbType)
 	dbName = beego.AppConfig.DefaultString("dbName","")
 	user = beego.AppConfig.DefaultString("user","")
 	password = beego.AppConfig.DefaultString("password","")

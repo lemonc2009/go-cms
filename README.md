@@ -7,15 +7,15 @@
 
 ### 配套前端
 
-[d2-projects/d2-admin-xiya-go-cms](https://github.com/d2-projects/d2-admin-xiya-go-cms)
+[lemonc2009/go-cms-d2-admin](https://github.com/lemonc2009/go-cms-d2-admin)
 
 ### 项目介绍
 
-技术栈 Vue.js + axios(ajax) +Beego Restful api + gorm + Mysql + Nginx
+技术栈 Vue.js + axios(ajax) +Beego Restful api (v2)+ gorm (v1)+ Mysql + Nginx
 
 ### 演示地址
 
-[https://d2.pub/d2-admin-xiya-go-cms/preview](https://d2.pub/d2-admin-xiya-go-cms/preview)
+暂不提供
 
 ### 安装&使用
 
@@ -60,9 +60,9 @@ sudo apt install nginx
 
 ``` shell
 cd /usr/local
-wget https://studygolang.com/dl/golang/go1.12.linux-amd64.tar.gz
+wget https://studygolang.com/dl/golang/go1.18.linux-amd64.tar.gz
 
-tar zxvf  go1.12.linux-amd64.tar.gz
+tar zxvf  go1.18.linux-amd64.tar.gz
 
 echo 'export GOROOT=/usr/local/go' >> ~/.bashrc 
 
@@ -94,16 +94,16 @@ mkdir src
 
 cd src
 
-git clone https://github.com/xiya-team/go-cms
+git clone https://github.com/lemonc2009/go-cms-backend
 
 ```
 
 * 包管理和安装依赖
 
-1、查看go版本 如使用go modules 强烈建议升级到go 1.13
+1、查看go版本 如使用go modules 强烈建议升级到go 1.18
 
 	> go version
-	go version go1.13.1 windows/amd64
+	go version go1.18 windows/amd64
 
 2、设置国内模块代理 
 
@@ -168,7 +168,7 @@ go run main.go // go 命令
 ### linux/mac 环境 快速运行
 
 ```
-1、将项目拉到本地 git clone https://github.com/xiya-team/go-cms
+1、将项目拉到本地 git clone https://github.com/lemonc2009/go-cms-backend
 2、copy conf/app-backup.conf 为 conf/app.conf 同时修改conf/app.conf中相关配置,导入/data下的数据库文件到数据库中
 3、执行 ./run.sh start 即可启动项目
 4、执行 ./run.sh stop 停止运行
@@ -193,6 +193,7 @@ go run main.go // go 命令
 
 **感谢以下开源项目作者及参与者的无私奉献**
 
+* [XIYA](https://github.com/xiya-team/)
 * [Beego](https://github.com/beego/beego/v2/)
 * [Gorm](https://github.com/jinzhu/gorm)
 * [Vue](https://github.com/vuejs/vue)
@@ -200,9 +201,3 @@ go run main.go // go 命令
 * 其他相关开源项目
 * [Uber Go 语言代码风格指南](https://github.com/uber-go/guide)
 
-
-<a href="https://github.com/d2-projects/d2-admin" target="_blank"><img src="https://raw.githubusercontent.com/FairyEver/d2-admin/master/doc/image/d2-admin@2x.png" width="200"></a>
-
-需要进微信群 (入群验证信息: `加入go-cms群`)
-
-<img src="public/Wechat.jpeg" width="300px"/>

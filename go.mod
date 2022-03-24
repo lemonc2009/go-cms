@@ -12,7 +12,6 @@ require (
 	github.com/go-playground/universal-translator v0.16.0
 	github.com/go-redis/redis/v7 v7.4.0
 	github.com/go-redis/redis_rate/v8 v8.0.0-beta
-	github.com/go-sql-driver/mysql v1.6.0
 	github.com/gorilla/websocket v1.5.0
 	github.com/jinzhu/gorm v1.9.16
 	github.com/mojocn/base64Captcha v0.0.0-20190801020520-752b1cd608b2
@@ -35,6 +34,7 @@ require (
 	github.com/beorn7/perks v1.0.1 // indirect
 	github.com/bradfitz/gomemcache v0.0.0-20190913173617-a41fca850d0b // indirect
 	github.com/cespare/xxhash/v2 v2.1.2 // indirect
+	github.com/go-sql-driver/mysql v1.6.0 // indirect
 	github.com/golang/freetype v0.0.0-20170609003504-e2365dfdc4a0 // indirect
 	github.com/golang/protobuf v1.5.2 // indirect
 	github.com/gomodule/redigo v2.0.0+incompatible // indirect
